@@ -25,14 +25,10 @@ main().catch(err => console.log(err))
 async function main() {
   await mongoose.connect(process.env.MONGODB_URI)
 }
-// setup Passport auth
-app.use(session({ secret: 'canttouchthis', resave: false, saveUninitialized: true }))
-app.use(passport.initialize())
-app.use(passport.session())
 
+// setup Passport auth
 passport.use(
   new LocalStrategy(async (email, password, done) => {
-
     try {
       const user = await User.findOne({ email: email })
       if (!user) {
@@ -61,6 +57,11 @@ passport.deserializeUser(async (id, done) => {
     done(err)
   }
 })
+
+app.use(session({ secret: 'canttouchthis', resave: false, saveUninitialized: true }))
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
