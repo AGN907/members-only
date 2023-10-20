@@ -28,22 +28,22 @@ async function main() {
 
 // setup Passport auth
 passport.use(
-  new LocalStrategy(async (email, password, done) => {
+  new LocalStrategy({usernameField: 'email'}, async (email, password, done) => {
     try {
-      const user = await User.findOne({ email: email })
+      const user = await User.findOne({ email: email });
       if (!user) {
-        return done(null, false, { message: 'Incorrect email' })
-      }
+        return done(null, false, { message: "Incorrect email" });
+      };
       const match = await bycrypt.compare(password, user.password)
       if (!match) {
-        return done(null, false, { message: 'Incorrect password' })
-      }
-      return done(null, user)
-    } catch (err) {
-      return done(err)
-    }
+        return done(null, false, { message: "Incorrect password" });
+      };
+      return done(null, user);
+    } catch(err) {
+      return done(err);
+    };
   })
-)
+);
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
@@ -51,7 +51,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = User.findById(id)
+    const user = await User.findById(id)
     done(null, user)
   } catch (err) {
     done(err)
