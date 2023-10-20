@@ -1,0 +1,36 @@
+extends layout 
+
+block content 
+
+  .background
+    .wrapper 
+      .card 
+        .card-body 
+          if errors
+            ul.error-list
+              each error in errors 
+                li #{error.msg}
+          h2 Sign Up
+          form(method="POST" action="")
+            div.form-row
+              .form-col
+                div.form-group
+                  label.form-label(for="firstName") First Name
+                  input#firstName.form-control(required="true" name="firstName")
+              .form-row
+                div.form-group
+                  label.form-label(for="lastName") Last Name
+                  input#lastName.form-control(required="true" name="lastName")
+            div.form-group 
+              label.form-label(for="email") Email 
+              input#email.form-control(required="true" type="email" name="email")
+            div.form-row 
+              div.form-group 
+                label.form-label(for="password") Password 
+                input#password.form-control(required="true" type="password" name="password")
+              div.form-group
+                label.form-label(for="confirm-password") Confirm Password 
+                input#confirm-password.form-control(required="true" type="password" name="confirm-password")
+            button.btn.primary(type="submit") Sign up
+
+
