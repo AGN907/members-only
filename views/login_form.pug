@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+    .background 
+        .wrapper 
+            .card 
+                .card-body 
+                    h2 Log in
+                    form(method="POST" action="") 
+                        .form-group 
+                            label(for="email") Email 
+                            input#email.form-control(required="true" type="email" name="email")
+                        .form-group 
+                            label(for="password") Password 
+                            input#password.form-control(required="true" type="password" name="password") 
+                        button.btn.primary(type="submit") Log in
