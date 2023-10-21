@@ -14,6 +14,7 @@ const bycrypt = require('bcryptjs')
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth')
+const messageRouter = require('./routes/message')
 
 const User = require('./models/user')
 const app = express();
@@ -28,7 +29,7 @@ async function main() {
 
 // setup Passport auth
 passport.use(
-  new LocalStrategy({usernameField: 'email'}, async (email, password, done) => {
+  new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
     try {
       const user = await User.findOne({ email: email });
       if (!user) {
@@ -39,7 +40,7 @@ passport.use(
         return done(null, false, { message: "Incorrect password" });
       };
       return done(null, user);
-    } catch(err) {
+    } catch (err) {
       return done(err);
     };
   })
@@ -76,6 +77,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/', authRouter)
+app.use('/message', messageRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,16 @@
+extends layout 
+
+
+block content 
+  h1= title
+
+
+  form(method='POST' action="") 
+    .form-group 
+      label.form-label(for='title') Title 
+      input#title.form-control(required="true" name="title")
+    .form-group 
+      label.form-label(for="text") Message
+      textarea#text.form-control(required="true" name="text")
+
+    button.btn.primary Create
