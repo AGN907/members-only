@@ -4,4 +4,25 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    header 
+      .header 
+        a.header__title(href='/') Members
+         span.header__span Only
+        nav 
+          ul.menu 
+            if !user
+              li.menu__item
+                img.menu__icon(src="/images/signup.svg" alt="signup")
+                a.menu__link(href='/sign-up') Sign up
+              li.menu__item
+                img.menu__icon(src="/images/login.svg", alt="login")
+                a.menu__link(href='/log-in') Log in
+            if user 
+              li.menu__item
+                img.menu__icon(src="/images/logout.svg", alt="logout")
+                a.menu__link(href="/log-out") Log out 
+            if user.memberStatus === 'non-member'
+              li.menu__item
+                img.menu__icon(src="/images/member.svg", alt="member")
+                a.menu__link(href='/be-member') Be a member
     block content

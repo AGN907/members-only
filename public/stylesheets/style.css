@@ -6,10 +6,6 @@ body {
   align-items: center;
 }
 
-a {
-  color: #00B7FF;
-}
-
 .background {
   background: linear-gradient(to top right, #00B7FF 0%,#6c4079 100%);
   min-height: 100vh;
@@ -82,4 +78,77 @@ ul.error-list {
   padding: .5rem 2rem;
   border-radius: 10px;
   color: #721c24;
+}
+
+header {
+  width: 100%;
+  background-color: #fff;
+  max-height: 100px;
+  margin: auto;
+  box-shadow: 1px 1px 4px 0px darkgray;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .25rem 2rem;
+}
+.header__title {
+  color: #262626;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+.header__span {
+  color: #1E40AF;
+  font-weight: bold;
+}
+.menu {
+  display: flex;
+  gap: 16px;
+}
+
+.menu__item {
+  list-style: none;
+  padding: 0 8px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+.menu__link {
+  color: #262626;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.menu__icon {
+  width: 24px;
+}
+
+
+.welcome {
+  font-size: 1.4rem;
+}
+
+.welcome__user {
+  font-weight: bold;
+}
+
+.info__item {
+  font-size: 1.2rem;
+}
+
+.admin {
+  color: #DC2626;
+  font-weight: bold;
+}
+
+.non-member {
+  color: #FACC15;
+  font-weight:bold;
+}
+
+.member {
+  color: #4ADE80;
+  font-weight:bold;
 }
