@@ -21,8 +21,9 @@ html
               li.menu__item
                 img.menu__icon(src="/images/logout.svg", alt="logout")
                 a.menu__link(href="/log-out") Log out 
-            if user.memberStatus === 'non-member'
-              li.menu__item
-                img.menu__icon(src="/images/member.svg", alt="member")
-                a.menu__link(href='/be-member') Be a member
+            if user
+              if user.memberStatus === 'non-member'
+                li.menu__item
+                  img.menu__icon(src="/images/member.svg", alt="member")
+                  a.menu__link(href='/be-member') Be a member
     block content
