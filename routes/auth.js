@@ -11,8 +11,8 @@ router.get('/log-in', userController.login_get)
 router.post(
   "/log-in",
   passport.authenticate('local', {
-    
-    successRedirect: '/', 
+
+    successRedirect: '/',
     failureRedirect: '/log-in'
   })
 )
@@ -20,5 +20,8 @@ router.post(
 
 router.get('/log-out', userController.logout_get)
 
+
+router.get('/be-member', userController.be_member_get)
+router.post('/be-member', userController.be_member_post)
 
 module.exports = router

@@ -7,7 +7,7 @@ const { body, validationResult } = require('express-validator')
 exports.signup_get = asyncHandler(async (req, res, next) => {
   if (req.isAuthenticated()) {
     res.redirect('/')
-    return 
+    return
   }
   res.render('signup_form', {
     title: 'Sign up'
@@ -90,3 +90,39 @@ exports.logout_get = asyncHandler(async (req, res, next) => {
     res.redirect('/')
   })
 })
+
+
+
+exports.be_member_get = asyncHandler(async (req, res, next) => {
+  if (req.isAuthenticated()) {
+    res.render('member_form')
+
+  }
+  res.redirect('/')
+})
+
+
+exports.be_member_post = [
+  body('passcode', 'Passcode must not be empty')
+    .trim()
+    .isLength({ min: 1 })
+    .custom(value => {
+      if (value !== 'FreePalestine') {
+        throw new Error('Incorrect passcode')
+      }
+      return true
+    }).escape(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+      res.render('member_form', {
+        errors: errors.array()
+      })
+    }
+
+    await User.findByIdAndUpdate(req.user.id, { memberStatus: 'member' })
+    res.redirect('/')
+  })
+]

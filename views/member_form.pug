@@ -1,0 +1,14 @@
+extends layout 
+
+
+block content 
+  h2 Become a member 
+  p Enter the passcode (You can find it in README.md)
+  form(method='POST' action="")
+    .form-group 
+      input#passcode.form-control(name='passcode' required='true') 
+    button.btn.primary Submit
+  if errors 
+    ul.error-list 
+      for error in errors 
+        li #{error.msg} 
