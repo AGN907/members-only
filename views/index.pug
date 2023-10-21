@@ -2,22 +2,24 @@ extends layout
 
 block content
 
-  if user
+  if currentUser
     p.welcome Welcome 
-      span.welcome__user #{user.name} 
-      if user.memberStatus === 'non-member'
-        span.non-member (#{user.memberStatus})
-      if user.memberStatus === 'member'
-        span.member (#{user.memberStatus})
-      if user.memberStatus === 'admin'
-        span.admin (#{user.memberStatus})
-    .info
-      p.info__item 
-        span.non-member Non-members 
-        | can't see the author and date of message.
-      p.info__item 
-        span.member Members 
-        | can see everything.
-      p.info__item 
-        span.admin Admins 
-        | can delete any message.
+      span.welcome__user #{currentUser.name} 
+      if currentUser.memberStatus === 'non-member'
+        span.non-member (#{currentUser.memberStatus})
+      if currentUser.memberStatus === 'member'
+        span.member (#{currentUser.memberStatus})
+      if currentUser.memberStatus === 'admin'
+        span.admin (#{currentUser.memberStatus})
+  .info
+    p.info__item 
+      span.non-member Non-members 
+      | can't see the author and date of message.
+    p.info__item 
+      span.member Members 
+      | can see everything.
+    p.info__item 
+      span.admin Admins 
+      | can delete any message.
+
+

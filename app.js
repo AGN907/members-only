@@ -12,7 +12,6 @@ const LocalStrategy = require('passport-local').Strategy
 const bycrypt = require('bcryptjs')
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth')
 const messageRouter = require('./routes/message')
 
@@ -63,6 +62,10 @@ app.use(session({ secret: 'canttouchthis', resave: false, saveUninitialized: tru
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user
+  next()
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -74,8 +77,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/', authRouter)
 app.use('/message', messageRouter)
 
