@@ -76,9 +76,17 @@ exports.signup_post = [
 exports.login_get = asyncHandler(async (req, res, next) => {
   if (req.isAuthenticated()) {
     res.redirect('/')
-    return 
+    return
   }
   res.render('login_form')
 })
 
 
+exports.logout_get = asyncHandler(async (req, res, next) => {
+  req.logOut((err) => {
+    if (err) {
+      return next(err)
+    }
+    res.redirect('/')
+  })
+})
