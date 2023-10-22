@@ -6,9 +6,7 @@ const Message = require('../models/message')
 exports.message_create_get = asyncHandler(async (req, res, next) => {
   if (req.isAuthenticated()) {
     res.render('message_form', {
-      title: 'Create Message',
-      user: req.user
-
+      title: 'Create Message'
     })
   }
   res.redirect('/')
@@ -45,3 +43,9 @@ exports.message_create_post = [
     res.redirect('/')
   })
 ]
+
+
+exports.message_delete = asyncHandler(async (req, res, next) => {
+  await Message.findByIdAndRemove(req.params.id)
+  res.redirect('/')
+})

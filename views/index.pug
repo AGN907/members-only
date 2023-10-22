@@ -3,14 +3,15 @@ extends layout
 block content
 
   if currentUser
+    - const status = currentUser.memberStatus.slice(0,1).toUpperCase() + currentUser.memberStatus.slice(1)
     p.welcome Welcome 
       span.welcome__user #{currentUser.name} 
       if currentUser.memberStatus === 'non-member'
-        span.non-member (#{currentUser.memberStatus})
+        span.non-member (#{status})
       if currentUser.memberStatus === 'member'
-        span.member (#{currentUser.memberStatus})
+        span.member (#{status})
       if currentUser.memberStatus === 'admin'
-        span.admin (#{currentUser.memberStatus})
+        span.admin (#{status})
   .info
     p.info__item 
       span.non-member Non-members 
@@ -22,4 +23,19 @@ block content
       span.admin Admins 
       | can delete any message.
 
-
+  h2 Messages
+  for message in messages 
+    .message
+      if currentUser && currentUser.memberStatus === 'admin'
+        a.message__del(href='/message/' + message._id + '/delete') X 
+      .message__body 
+        .message__header
+          p.message__title #{ message.title }
+          if currentUser && currentUser.memberStatus !== 'non-member'
+            p.message__date #{ message.dateFormatted }
+        .message__content
+          p #{message.text}
+        if currentUser && currentUser.memberStatus !== 'non-member'
+          .message__footer
+            p by 
+              span.message__author #{message.user.name}

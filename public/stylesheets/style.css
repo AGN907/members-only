@@ -85,6 +85,8 @@ header {
   background-color: #fff;
   max-height: 100px;
   margin: auto;
+
+  margin-bottom: 4rem;
   box-shadow: 1px 1px 4px 0px darkgray;
 }
 
@@ -151,4 +153,61 @@ header {
 .member {
   color: #4ADE80;
   font-weight:bold;
+}
+
+.message {
+  position: relative;
+  max-width: 500px;
+
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  margin: 10px 0;
+
+  width: 100%;
+  background-color: #BFDBFE;
+  border-radius: 10px;
+}
+
+.message__body {
+  padding: 8px;
+}
+
+.message__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.message__content {
+  font-size: 1.2rem;
+}
+.message__title {
+  font-size: 1.2rem;
+}
+.message__date {
+  font-size: .9rem;
+}
+
+.message__footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message__author {
+  font-weight: bold;
+}
+
+.message__del {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background-color: transparent;
+  color: #000;
+  text-decoration: none;
+}
+
+.message__del:hover {
+  opacity: .6;
 }
